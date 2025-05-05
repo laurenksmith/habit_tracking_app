@@ -6,37 +6,6 @@ import json  # to work with JSON files
 import os  # to check if a file exists
 
 
-# welcome screen and menu
-def main():
-    habits = load_habits()
-
-    while True:
-        print("\n******* Welcome to Happy Habits Tracker! *******")
-        print("Please choose from one of the following options:")
-        print("1. View habits")
-        print("2. Add a new habit")
-        print("3. Mark habit as done today")
-        print("4. Exit")
-        choice = input("Enter the number that corresponds to your choice:")
-
-        if choice == '1':
-            print("You chose to view habits.")
-        elif choice == '2':
-            habits = add_new_habit(habits)  # updating habits list with new one returned from add_new_habit()
-            save_habits(habits)  # save new habit to habits.json
-        elif choice == '3':
-            print("You chose to mark a habit as done today")
-        elif choice == '4':
-            print("Goodbye, and happy habit tracking!")
-            break
-        else:
-            print("Whoops! That wasn't a valid option. Please enter either 1, 2, 3 or 4.")
-
-
-if __name__ == "__main__":
-    main()
-
-
 # Create a function which will read from habits.json and returns the habits data
 def load_habits():
     if not os.path.exists("habits.json"):  # checks whether the file exists
@@ -73,3 +42,37 @@ def add_new_habit(habits):  # take the current list as input
     })
     print(f"Success! Habit '{new_habit}' has been added!\n")
     return habits
+
+
+# welcome screen and menu
+def main():
+    habits = load_habits()
+
+    while True:
+        print("\n*** Welcome to Happy Habits Tracker! ***")
+        print("Please choose from one of the following options:")
+        print("1. View habits")
+        print("2. Add a new habit")
+        print("3. Mark habit as done today")
+        print("4. Exit")
+        choice = input("Enter the number that corresponds to your choice:")
+
+        if choice == '1':
+            print("*** You chose to view habits. ***")
+        elif choice == '2':
+            habits = add_new_habit(habits)  # updating habits list with new one returned from add_new_habit()
+            save_habits(habits)  # save new habit to habits.json
+        elif choice == '3':
+            print("*** You chose to mark a habit as done today ***")
+        elif choice == '4':
+            print("*** Goodbye, and happy habit tracking! ***")
+            break
+        else:
+            print("*** Whoops! That wasn't a valid option. Please enter either 1, 2, 3 or 4. ***")
+
+
+if __name__ == "__main__":
+    main()
+
+
+
