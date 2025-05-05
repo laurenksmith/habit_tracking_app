@@ -2,8 +2,14 @@
 # Created by Lauren Copas
 # May 2025
 
+import json  # to work with JSON files
+import os  # to check if a file exists
+
+
 # welcome screen and menu
 def main():
+    habits = load_habits()
+
     while True:
         print("\n******* Welcome to Happy Habits Tracker! *******")
         print("Please choose from one of the following options:")
@@ -11,8 +17,8 @@ def main():
         print("2. Add a new habit")
         print("3. Mark habit as done today")
         print("4. Exit")
-
         choice = input("Enter the number that corresponds to your choice:")
+
 
         if choice == '1':
             print("You chose to view habits.")
@@ -29,3 +35,20 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# Create a function which will read from habits.json and returns the habits data
+def load_habits():
+    if not os.path.exists("habits.json"):  # checks whether the file exists
+        return []  # if the file doesn't exist, will return an empty list (no habits yet)
+    with open("habits.json", "r") as file:  # opens the file in read mode
+        try:  # to try to load the file safely
+            return json.load(file)
+        except json.JSONDecodeError:  # catches the error if the file is empty or corrupted
+            return []  # fallback - return an empty list again
+
+
+# Create a function which will take current list of habits and write to file
+def save_habits(habits):
+    with open("habits.json", "w") as file: # opens the file in write mode (overwrite it)
+        json.dump(habits, file, indent=4) # writes the list of habits into the file using neat formatting
