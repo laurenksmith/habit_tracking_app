@@ -71,5 +71,5 @@ def add_new_habit(habits):  # take the current list as input
         "habit": new_habit,  # the name of the new habit
         "dates": []  # currently an empty list, to be filled in later
     })
-    print(f"Success! Habit '{new_habit}' has been added!")
+    print(f"Success! Habit '{new_habit}' has been added!\n")
     return habits
