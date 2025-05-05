@@ -19,11 +19,11 @@ def main():
         print("4. Exit")
         choice = input("Enter the number that corresponds to your choice:")
 
-
         if choice == '1':
             print("You chose to view habits.")
         elif choice == '2':
-            print("You chose to add a new habit.")
+            habits = add_new_habit(habits)  # updating habits list with new one returned from add_new_habit()
+            save_habits(habits)  # save new habit to habits.json
         elif choice == '3':
             print("You chose to mark a habit as done today")
         elif choice == '4':
@@ -50,5 +50,26 @@ def load_habits():
 
 # Create a function which will take current list of habits and write to file
 def save_habits(habits):
-    with open("habits.json", "w") as file: # opens the file in write mode (overwrite it)
-        json.dump(habits, file, indent=4) # writes the list of habits into the file using neat formatting
+    with open("habits.json", "w") as file:  # opens the file in write mode (overwrite it)
+        json.dump(habits, file, indent=4)  # writes the list of habits into the file using neat formatting
+
+
+# Create a function which will ask the user for a habit name, check if the habit already exists and if it doesn't, it
+# will add it to the list and return it
+def add_new_habit(habits): # take the current list as input
+    new_habit = input("Well done on starting a new habit! Enter the name of the habit you'd like to track:").strip()
+    # strip to remove leading/trailing spaces
+
+    # loop through each existing habit and compare them to the new one, all in lowercase.
+    # If it already exists, tell user and don't add it again
+    for habit in habits:
+        if habit["habit"].lower == new_habit.lower():
+            print("That habit already exists!")
+            return habits # return the list unchanged
+
+    habits.append({ # add a new dictionary to the list
+        "habit": new_habit, # the name of the new habit
+        "dates": []  # currently an empty list, to be filled in later
+    })
+    print(f"Success! Habit '{new_habit}' has been added!")
+    return habits
