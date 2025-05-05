@@ -44,6 +44,19 @@ def add_new_habit(habits):  # take the current list as input
     return habits
 
 
+# Create a function that will print the different habits as well as the number of days each habit has been logged
+def view_habits(habits):
+    if not habits:  # this will check if the habits list is still empty, and if so, it will display a message
+        # and then stop
+        print("Looks like you haven't added any habits yet!")
+        return
+
+    print("\nYour Habits:")
+    for habit in habits:
+        name = habit["habit"]  # fetch the habit
+        count = len(habit["dates"])  # count the number of times the particular habit has been logged for
+        print(f" {name}: {count} days logged.")
+
 # welcome screen and menu
 def main():
     habits = load_habits()
@@ -58,7 +71,7 @@ def main():
         choice = input("Enter the number that corresponds to your choice:")
 
         if choice == '1':
-            print("*** You chose to view habits. ***")
+            view_habits(habits)
         elif choice == '2':
             habits = add_new_habit(habits)  # updating habits list with new one returned from add_new_habit()
             save_habits(habits)  # save new habit to habits.json
