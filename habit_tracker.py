@@ -56,19 +56,19 @@ def save_habits(habits):
 
 # Create a function which will ask the user for a habit name, check if the habit already exists and if it doesn't, it
 # will add it to the list and return it
-def add_new_habit(habits): # take the current list as input
+def add_new_habit(habits):  # take the current list as input
     new_habit = input("Well done on starting a new habit! Enter the name of the habit you'd like to track:").strip()
     # strip to remove leading/trailing spaces
 
     # loop through each existing habit and compare them to the new one, all in lowercase.
     # If it already exists, tell user and don't add it again
     for habit in habits:
-        if habit["habit"].lower == new_habit.lower():
+        if habit["habit"].lower() == new_habit.lower():
             print("That habit already exists!")
-            return habits # return the list unchanged
+            return habits  # return the list unchanged
 
-    habits.append({ # add a new dictionary to the list
-        "habit": new_habit, # the name of the new habit
+    habits.append({  # add a new dictionary to the list
+        "habit": new_habit,  # the name of the new habit
         "dates": []  # currently an empty list, to be filled in later
     })
     print(f"Success! Habit '{new_habit}' has been added!")
