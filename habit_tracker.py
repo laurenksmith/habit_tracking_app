@@ -25,3 +25,7 @@ def main():
             break
         else:
             print("Whoops! That wasn't a valid option. Please enter either 1, 2, 3 or 4.")
+
+
+if __name__ == "__main__":
+    main()
