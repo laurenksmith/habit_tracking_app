@@ -4,7 +4,7 @@
 
 import json  # to work with JSON files
 import os  # to check if a file exists
-
+from datetime import date  # allows me to access the current date needed to mark habits as done
 
 # Create a function which will read from habits.json and returns the habits data
 def load_habits():
@@ -57,6 +57,35 @@ def view_habits(habits):
         count = len(habit["dates"])  # count the number of times the particular habit has been logged for
         print(f" {name}: {count} days logged.")
 
+
+# Create a function that will allow the user to mark their habit as done on that particular day. It will also offer
+# the user some words of encouragement!
+def mark_habit_done(habits):
+    if not habits:  # if no habits have been created yet, we can return it without making any changes
+        print("You need to add a habit before you can mark it as done!")
+        return habits
+
+    print("\nWhich habit do you want to mark as completed today?")
+    for index, habit in enumerate(habits, start=1):  # use enumerate to ensure the numbers start from 1, instead of 0
+        print(f"{index}.{habit['habit']}")
+
+    try:
+        choice = int(input("Enter the number of the habit you completed:"))
+        selected_habit = habits[choice - 1]  # 1 has to be subtracted because indexes begin at 0
+        today = str(date.today())  # convert to a string so that it matches the format in the dates list
+
+        if today in selected_habit["dates"]:
+            print("Looks like you've already marked this habit as done today")  # to ensure current day not duplicated
+        else:
+            selected_habit["dates"].append(today)
+            print(f"Awesome work! '{selected_habit['habit']}' is marked as done for today.")  # print a message to
+        # acknowledge that habit is logged for the day, and also give the user some positive reinforcement!
+    except (ValueError, IndexError):
+        print("That hasn't worked. Please make sure to enter a number from the list.")
+
+    return habits
+
+
 # welcome screen and menu
 def main():
     habits = load_habits()
@@ -76,7 +105,8 @@ def main():
             habits = add_new_habit(habits)  # updating habits list with new one returned from add_new_habit()
             save_habits(habits)  # save new habit to habits.json
         elif choice == '3':
-            print("*** You chose to mark a habit as done today ***")
+            habits = mark_habit_done(habits)
+            save_habits(habits)
         elif choice == '4':
             print("*** Goodbye, and happy habit tracking! ***")
             break
