@@ -4,7 +4,9 @@
 
 import json  # to work with JSON files
 import os  # to check if a file exists
-from datetime import date  # allows me to access the current date needed to mark habits as done
+from datetime import date, timedelta, datetime  # allows me to access the current date needed to mark habits as done
+# timedelta will allow me to check if two dates are no more than 1 day apart, to create a 'streak' for the user
+
 
 # Create a function which will read from habits.json and returns the habits data
 def load_habits():
@@ -84,6 +86,31 @@ def mark_habit_done(habits):
         print("That hasn't worked. Please make sure to enter a number from the list.")
 
     return habits
+
+
+# Create a function that will show how many consecutive days a user has logged a particular habit - called a streak.
+def get_streak(dates_list):
+    if not dates_list:
+        return 0
+
+    # I want to convert the date strings to date objects to sort them
+    # first, I need to convert the date string into a real date object using datetime.strptime
+    # then, I want to sort the dates so that they can be checked in order (using sorted)
+    date_objects = sorted([datetime.strptime(d, "%Y-%m-%d").date() for d in dates_list])
+
+    streak = 1
+    max_streak = 1
+
+    # I want it to compare each date to the date before, and if it's exactly 1 day apart, continue the streak
+    for i in range(1, len(date_objects)):
+        if date_objects[i] - date_objects[i -1] == timedelta(days=1):
+            streak += 1
+            max_streak = max(max_streak, streak)
+        else:
+            # if it isn't exactly 1 day apart, I want the streak to reset to 1
+            streak = 1
+
+    return max_streak
 
 
 # welcome screen and menu
