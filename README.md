@@ -40,11 +40,25 @@ This helped me to practise file I/O, loops, conditionals, and working with dates
 
 ## 📸 Screenshots 📸
 
-![Welcome_Screen](C:\Users\laure\OneDrive\Pictures\Screenshots\Screenshot%202025-05-06%20092400.png "Welcome Screen")
-![Making_a_Choice](C:\Users\laure\OneDrive\Pictures\Screenshots\Screenshot%202025-05-06%20092436.png "Making a Choice")
-![Invalid_Option](C:\Users\laure\OneDrive\Pictures\Screenshots\Screenshot%202025-05-06%20092456.png "Invalid Option Message")
-![Viewing_Habits](C:\Users\laure\OneDrive\Pictures\Screenshots\Screenshot%202025-05-06%20092517.png "Viewing Habits")
-![Daily_Log_In]("C:\Users\laure\OneDrive\Pictures\Screenshots\Screenshot 2025-05-06 092559.png" "You Can Only Log Each Habit Once A Day")
+Welcome Screen
+
+![Screenshot 2025-05-06 092400](https://github.com/user-attachments/assets/c54582f9-eb33-420a-a5ff-4e1028ba8e5a)
+
+Making a Choice
+
+![Screenshot 2025-05-06 092436](https://github.com/user-attachments/assets/10f34282-b382-4fbd-9891-b94c1ba6da9a)
+
+Invalid Option
+
+![Screenshot 2025-05-06 092456](https://github.com/user-attachments/assets/8fbc8d7a-8492-4f3f-b02a-8990d417e22c)
+
+Viewing Habits
+
+![Screenshot 2025-05-06 092517](https://github.com/user-attachments/assets/e3cd683f-9c71-4275-8d53-b081611fafb9)
+
+Daily Log In
+
+![Screenshot 2025-05-06 092559](https://github.com/user-attachments/assets/32547eaf-d548-4cc2-bc63-0fda45855819)
 
 ---
 
