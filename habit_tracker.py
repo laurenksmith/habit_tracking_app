@@ -57,7 +57,8 @@ def view_habits(habits):
     for habit in habits:
         name = habit["habit"]  # fetch the habit
         count = len(habit["dates"])  # count the number of times the particular habit has been logged for
-        print(f" {name}: {count} days logged.")
+        streak = get_streak(habit["dates"])
+        print(f" {name}: {count} days logged. \n🔥🔥🔥 You're on fire - {streak} days so far. Keep going!")
 
 
 # Create a function that will allow the user to mark their habit as done on that particular day. It will also offer
